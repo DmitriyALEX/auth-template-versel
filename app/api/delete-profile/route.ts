@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import prisma from '@/app/helpers/prismadb'
+//import prisma from '@/app/helpers/prismadb'
 import admin from '@/app/config/firebaseAdmin'
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 export async function DELETE(req: NextRequest) {
     const { userId } = await req.json()
