@@ -1,4 +1,4 @@
-Authorization and routing 
+Authorization and routing
 
 deployed:
-https://auth-template-ooss.onrender.com
+https://auth-template-versel.vercel.app
