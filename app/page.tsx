@@ -22,13 +22,13 @@ export default function Home() {
         }
     }
 
-    const handleSignOut = async () => {
-        try {
-            await logOut()
-        } catch (e) {
-            console.error(e)
-        }
-    }
+    // const handleSignOut = async () => {
+    //     try {
+    //         await logOut()
+    //     } catch (e) {
+    //         console.error(e)
+    //     }
+    // }
 
     //REDIRECT IF USER AUTHORIZED
     useEffect(() => {
@@ -46,29 +46,30 @@ export default function Home() {
 
     return (
         <section className={styles.main_container}>
-            {!user ? (
-                <>
-                    <PrimaryButton
-                        title={'Sign in'}
-                        image_link={googleLogo}
-                        alt={'google_logo'}
-                        onClick={handleSignIn}
-                        logoLoaded={logoLoaded}
-                    />
+            {/* {!user ? ( */}
+            <>
+                <PrimaryButton
+                    title={'Sign in'}
+                    image_link={googleLogo}
+                    alt={'google_logo'}
+                    onClick={handleSignIn}
+                    logoLoaded={logoLoaded}
+                />
 
-                    {/* FOR STATE WATCHER */}
-                    <Image
-                        src={googleLogo}
-                        alt="google_logo"
-                        onLoad={() => setLogoLoaded(true)}
-                        style={{ display: 'none' }}
-                        width={20}
-                        height={20}
-                    />
-                </>
-            ) : (
-                <button onClick={handleSignOut}>signOutф</button>
-            )}
+                {/* FOR STATE WATCHER */}
+                <Image
+                    src={googleLogo}
+                    alt="google_logo"
+                    onLoad={() => setLogoLoaded(true)}
+                    style={{ display: 'none' }}
+                    width={20}
+                    height={20}
+                />
+            </>
+            {/* ) : (
+                // <button onClick={handleSignOut}>signOutф</button>
+                <></>
+            )} */}
         </section>
     )
 }

@@ -38,6 +38,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (fetchedData) {
             if (fetchedData.status === 'userCreated') {
                 router.push('/set-username')
+            } else if (fetchedData.status === 'username not found') {
+                router.push('/set-username')
             }
         }
     }, [fetchedData, router])

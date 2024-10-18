@@ -46,7 +46,7 @@ export async function POST(req: NextRequest, response: NextResponse) {
             return NextResponse.json({ status: 'userChecked', checkUser: checkUserData, checkedUsername: usernameInfo })
         }
 
-        return NextResponse.json({ status: 'userChecked' })
+        // return NextResponse.json({ status: 'userChecked' })
     } catch (e) {
         console.error(e)
         return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 })
