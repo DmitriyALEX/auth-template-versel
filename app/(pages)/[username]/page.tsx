@@ -8,13 +8,14 @@ import { useEffect, useState } from 'react'
 import { urls } from '@/app/config/urls'
 
 const Profile = ({ params }: { params: { username: string } }) => {
-    const { user, fetchedData, setFetchedData, loading, logOut } = useAuth()
+    const { user, fetchedData, setFetchedData, loading, setLoading, logOut } = useAuth()
 
     const [userNotFound, setUserNotFound] = useState<boolean>(false)
     const router = useRouter()
 
     //USER PUBLIC PROFILE
     const loadProfile = async (username: string) => {
+        // setLoading(true)
         const result = await fetch(urls.publicProfile, {
             headers: {
                 'Content-Type': 'application/json',
@@ -23,8 +24,10 @@ const Profile = ({ params }: { params: { username: string } }) => {
             body: JSON.stringify({ username }),
         })
         const data = await result.json()
+        // setLoading(false)
 
         if (data.status === 'user not found') {
+            setFetchedData(null)
             setUserNotFound(true)
         } else {
             setFetchedData(data)
@@ -33,6 +36,7 @@ const Profile = ({ params }: { params: { username: string } }) => {
 
     //authorized user username
     const currentUserUsername = fetchedData?.checkedUsername?.username
+
     useEffect(() => {
         if (!fetchedData && !loading) {
             loadProfile(params.username)
@@ -48,6 +52,7 @@ const Profile = ({ params }: { params: { username: string } }) => {
                 } else if (fetchedData.status === 'username not found') {
                     router.push('/set-username')
                 } else if (fetchedData.status === 'user not found') {
+                    setFetchedData(null)
                     setUserNotFound(true)
                 }
             }
@@ -90,3 +95,13 @@ const Profile = ({ params }: { params: { username: string } }) => {
 }
 
 export default Profile
+
+//Update data at reRender
+// useEffect(() => {
+//     if (fetchedData) {
+//         setFetchedData(null)
+//     }
+//     if (!loading) {
+//         loadProfile(params.username)
+//     }
+// }, [params.username, loading])

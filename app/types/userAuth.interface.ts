@@ -39,6 +39,7 @@ export interface IUseAuth {
     googleSignIn: () => Promise<void>
     logOut: () => Promise<void>
     loading: boolean
+    setLoading: (value: boolean) => void
 }
 
 export interface ICurrentUser {
