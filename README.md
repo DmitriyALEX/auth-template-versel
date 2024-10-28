@@ -1,4 +1,5 @@
 Authorization and routing
 
-deployed:
-https://auth-template-versel.vercel.app
+!!!
+updated: all features is in real-time-interaction repo
+------------------------------------------------------
